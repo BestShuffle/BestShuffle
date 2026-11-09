@@ -6,7 +6,8 @@
 
 Standard library only. Fonts (Share Tech Mono, M PLUS 1 Code, SIL OFL) are subset from Google Fonts and embedded,
 because GitHub shows README SVGs as images, which cannot load anything external.
-Every animation starts from the final picture: with prefers-reduced-motion, the cards render still and complete.
+Every animation starts from the final picture, so a viewer that does not animate SVG still sees complete cards.
+No prefers-reduced-motion switch: Windows with animation effects off (RDP, performance mode) reports it, and the cards froze.
 """
 import argparse, base64, datetime as dt, functools, json, math, os, random, re, sys, time, urllib.error, urllib.parse, urllib.request
 from pathlib import Path
@@ -123,7 +124,7 @@ def document(w, h, body, css="", label="", kana=False, defs="", faces=""):
         f"<title>{esc(label)}</title><defs>{BASE_DEFS}{defs}</defs>"
         f"<style>{fonts(kana)}{faces}text{{font-family:{MONO}}}.k{{font-family:{KANA_FAM};font-weight:500}}{BASE_CSS}"
         f"@keyframes beam{{from{{transform:translateY(-8px)}}to{{transform:translateY({h}px)}}}}{css}"
-        "@media (prefers-reduced-motion:reduce){*{animation:none!important}}</style>"
+        "</style>"
         f'<rect width="{w}" height="{h}" rx="8" fill="{BG}"/>{body}'
         f'<rect class="beam" width="{w}" height="3" fill="{G}" opacity=".06"/>'
         f'<rect width="{w}" height="{h}" rx="8" fill="url(#scan)"/><rect width="{w}" height="{h}" rx="8" fill="url(#vig)"/>'
@@ -522,12 +523,12 @@ def farm():
         return node(delay, f'<path d="{d}" fill="none" stroke="{color}" stroke-width="1.5"{cls}/>')
 
     # operator
-    ux, uy, uw, uh = 30, 150, 170, 74
+    ux, uy, uw, uh = 24, 150, 200, 74
     you, you_sub = F["you"]
     body.append(node(0.3, box(ux, uy, uw, uh, RED) + mono(ux + 18, uy + 30, you, 20, HEAD) + mono(ux + 18, uy + 54, you_sub, 12, DIM, 1)))
 
     # orchestrator with its queue of lots
-    ox, oy, ow, oh = 240, 136, 256, 102
+    ox, oy, ow, oh = 254, 136, 256, 102
     title, sub = F["orchestrator"]
     lots = "".join(f'<rect class="lot" x="{ox + 18 + i * 22}" y="{oy + 72}" width="16" height="12" fill="{G4}" '
                    f'style="animation-delay:{i * 0.6:.1f}s"/>' for i in range(9))
@@ -553,7 +554,7 @@ def farm():
                      + f'<circle class="blink" cx="{sx + sw - 20}" cy="{sy + 24}" r="5" fill="{RED}" style="animation-delay:0s"/>'))
 
     # the brain, under everything: read before a task, written after
-    bx, by, bw, bh = 250, 334, 920, 80
+    bx, by, bw, bh = 254, 334, 916, 80
     title, line1, line2 = F["brain"]
     body.append(node(2.0, box(bx, by, bw, bh, G) + f'<g filter="url(#glow)">{mono(bx + 18, by + 28, title, 17, G, 2)}</g>'
                      + mono(bx + 18, by + 50, line1, 14, TEXT) + mono(bx + 18, by + 70, line2, 13, DIM)))
