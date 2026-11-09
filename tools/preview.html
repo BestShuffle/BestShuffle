@@ -1,0 +1,25 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Profile preview</title>
+<!-- Local preview of the README at GitHub's width. ?theme=robot shows the Mr Robot proposal (proposals/robot/). -->
+<style>
+  body { background: #0d1117; margin: 0; padding: 24px 16px; font-family: -apple-system, Segoe UI, sans-serif; color: #c9d1d9; }
+  nav { max-width: 830px; margin: 0 auto 12px; font-size: 14px; }
+  nav a { color: #58a6ff; margin-right: 16px; }
+  main { max-width: 830px; margin: auto; border: 1px solid #30363d; border-radius: 6px; padding: 24px; }
+  p { text-align: center; margin: 0 0 16px; }
+  img { max-width: 100%; }
+</style>
+<nav><a href="?theme=matrix">Matrix</a><a href="?theme=robot">Mr Robot</a></nav>
+<main id="m"></main>
+<script>
+  const robot = new URLSearchParams(location.search).get("theme") === "robot";
+  const a = robot ? "../proposals/robot/assets/" : "../assets/";
+  const d = robot ? "../proposals/robot/dist/" : "../dist/";
+  const color = robot ? "e3122d" : "00ff41";
+  const cards = [a + "banner.svg", null, a + "whoami.svg", a + (robot ? "recon.svg" : "htop.svg"), a + "farm.svg", d + "signal.svg", d + "grid.svg"];
+  document.getElementById("m").innerHTML = cards.map(src => src
+    ? `<p><img src="${src}" width="100%"></p>`
+    : `<p><img src="https://img.shields.io/badge/BSD_SOFT-000000?style=for-the-badge&logo=gnometerminal&logoColor=${color}">
+         <img src="https://img.shields.io/badge/REPOSITORIES-000000?style=for-the-badge&logo=github&logoColor=${color}"></p>`).join("");
+</script>

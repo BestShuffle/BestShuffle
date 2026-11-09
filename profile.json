@@ -1,0 +1,92 @@
+{
+  "login": "BestShuffle",
+  "name": ["SANDRO", "DIMITRIO"],
+  "full_name": "Sandro Dimitrio",
+  "role": "AI · software · DevOps architect",
+  "org": "founder @ BSD Soft",
+  "location": "France",
+  "since": 2012,
+  "user": "sandro",
+  "host": "bsd-soft",
+  "tagline": "// signal acquired - node: france",
+
+  "terminal": [
+    {"cmd": "whoami"},
+    {"out": "Sandro Dimitrio - founder of BSD Soft, AI, software & DevOps architect"},
+    {"cmd": "cat ~/.profile"},
+    {"kv": [
+      ["ROLE", "founder & architect @ BSD Soft"],
+      ["BASE", "France"],
+      ["BUILDS", "SaaS products end to end: Angular front, NestJS APIs, data pipelines"],
+      ["OPS", "Docker, Ansible, Keycloak SSO, WireGuard, self-hosted on OVH"],
+      ["LEGACY", "moving a 4D ERP to the cloud, one module at a time"]
+    ]},
+    {"cmd": "systemctl status dev-farm"},
+    {"out": "● dev-farm.service - BSD Soft development farm", "hl": true},
+    {"kv": [
+      ["ACTIVE", "active (running) 24/7 on dedicated machines"],
+      ["LOOP", "an orchestrator splits the work into lots, queues them, merges"],
+      ["AGENTS", "architect > planner > developer > code-reviewer > verifier"],
+      ["BRAIN", "Obsidian vault: read before every task, written after"]
+    ]},
+    {"cmd": "./motto --decrypt"},
+    {"out": "\"automate everything that runs twice.\""}
+  ],
+
+  "farm": {
+    "you": ["sandro", "specs · review · merge"],
+    "orchestrator": ["ORCHESTRATOR", "lot queue · dispatch · merge"],
+    "agents": [
+      ["architect", "shapes the system"],
+      ["planner", "splits it into lots"],
+      ["developer", "writes the code"],
+      ["code-reviewer", "reads every diff"],
+      ["verifier", "proves it works"]
+    ],
+    "ship": ["PRODUCTION", "git · build · deploy"],
+    "brain": [
+      "BRAIN // obsidian vault",
+      "decisions · pitfalls · learnings · project state, shared by every agent",
+      "each agent reads it before a task and writes back what it learned, so the farm never makes the same mistake twice"
+    ]
+  },
+
+  "meters": [
+    ["FRONT", 0.86, "Angular · TypeScript · Ionic / Capacitor"],
+    ["BACK", 0.93, "NestJS · Node.js · PHP · 4D"],
+    ["DATA", 0.80, "PostgreSQL · CouchDB · Vespa"],
+    ["AI", 0.90, "RAG · Mistral · Claude agents · Python"],
+    ["OPS", 0.84, "Docker · Ansible · Keycloak · WireGuard"]
+  ],
+
+  "processes": [
+    {"pid": 1337, "cmd": "navelys", "cpu": 97.3, "stack": "Angular · NestJS · PostgreSQL · 4D",
+     "desc": "cloud ERP suite + data platform replacing a legacy 4D ERP"},
+    {"pid": 2049, "cmd": "docutalk", "cpu": 64.8, "stack": "Angular · NestJS · Python · Vespa · Mistral",
+     "desc": "chat with your documents: RAG SaaS"},
+    {"pid": 3141, "cmd": "microsimplis", "cpu": 41.2, "stack": "Angular · NestJS · CouchDB",
+     "desc": "bookkeeping & URSSAF filings for French micro-entrepreneurs"},
+    {"pid": 4096, "cmd": "invoicing-sync", "cpu": 38.5, "stack": "Angular · NestJS · CouchDB",
+     "desc": "e-invoicing gateway: Factur-X, AFNOR flow API, ERP export"},
+    {"pid": 8080, "cmd": "codingforge", "cpu": 99.9, "stack": "Electron · Angular · NestJS · Claude agents",
+     "desc": "the development farm itself: orchestrator, sub-agents, lot queue"}
+  ],
+
+  "robot": {
+    "hello": "hello, friend.",
+    "status": "tty1 // connection established",
+    "lines": [
+      "ai · software · devops architect. founder of bsd soft.",
+      "i build the systems. my agents keep them running."
+    ],
+    "id": "uid=1000(sandro) gid=1000(bsd-soft) groups=27(sudo),999(docker),1337(agents)",
+    "hexdump": ["hello, friend.", "sandro dimitrio", "founder:bsd", "erp|saas|ai|ops", "they never sleep"],
+    "services": [
+      ["4200/tcp", "angular", "Angular · TypeScript · Ionic / Capacitor"],
+      ["3000/tcp", "nestjs", "NestJS · Node.js · PHP · 4D"],
+      ["5432/tcp", "postgresql", "PostgreSQL · CouchDB · Vespa"],
+      ["8000/tcp", "rag-agents", "RAG · Mistral · Claude agents · Python"],
+      ["22/tcp", "ssh", "Docker · Ansible · Keycloak · WireGuard"]
+    ]
+  }
+}

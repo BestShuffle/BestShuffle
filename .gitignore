@@ -1,0 +1,5 @@
+# live cards are built by the workflow and pushed to the `output` branch
+dist/
+__pycache__/
+# local theme proposals (python tools/build.py --theme robot ...)
+proposals/

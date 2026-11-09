@@ -1,0 +1,34 @@
+# Rebuilds the live cards (signal, grid) and publishes them to the `output` branch, which the README reads.
+name: profile-cards
+
+on:
+  schedule:
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["tools/build.py", "profile.json", ".github/workflows/profile-cards.yml"]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Signal and contribution grid
+        run: python3 tools/build.py --live dist --user "${{ github.repository_owner }}"
+        env:
+          # Private contributions are counted when "Include private contributions" is on in the profile settings.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish to the output branch
+        run: |
+          cd dist
+          git init -q -b output
+          git add .
+          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+            commit -q -m "cards: $(date -u +%F' '%H:%M)"
+          git push -fq "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" output
